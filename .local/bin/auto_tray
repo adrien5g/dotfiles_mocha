@@ -1,0 +1,29 @@
+#!/bin/python3
+import pathlib
+from typing import List
+import subprocess
+
+def get_config_path() -> str:
+    home = str(pathlib.Path.home())
+    return f'{home}/.config/i3/config'
+
+def read_config_file() -> List[str]:
+    with open(get_config_path(),  'r') as file:
+        return file.readlines()
+
+def update_config() -> List[str]:
+    new_config: List[str] = []
+    for line in read_config_file():
+        if 'tray_output' in line:
+            if 'primary' in line:
+                line = line.replace('primary', 'none')
+            elif 'none' in line:
+                line = line.replace('none', 'primary')
+        new_config.append(line)
+    return new_config
+
+data = update_config()
+with open(get_config_path(), 'w') as file:
+    file.writelines(data)
+
+subprocess.run(['i3-msg', 'reload'])

@@ -1,0 +1,11 @@
+import:
+  - ~/.config/alacritty/mocha.yml
+
+window:
+  padding:
+   x: 10
+   y: 10
+font:
+  normal:
+    family: Hack Nerd Font
+  size: 12

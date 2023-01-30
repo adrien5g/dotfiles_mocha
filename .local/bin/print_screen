@@ -1,0 +1,5 @@
+#!/bin/bash
+image='/tmp/print_scrot.png'
+scrot $image -s  -e 'xclip -selection clipboard -target image/png -i $f'
+notify-send -i $image 'Copied to clipboard'
+rm $image

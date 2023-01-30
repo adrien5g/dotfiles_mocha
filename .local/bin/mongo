@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ~/Www/infra-dev
+docker compose up -d mongodb
